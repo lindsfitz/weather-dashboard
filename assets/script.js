@@ -26,6 +26,7 @@ $("#history").on("click", function(event){
 
 function weatherSearch(input) {
     $("#current").empty();
+    $('#fiveday').empty();
     var APIurl = "https://api.openweathermap.org/data/2.5/weather?q="+input+"&appid=adf080c4900ab48938f6770e1ae7a9c0&units=imperial"
     fetch(APIurl)
     .then(response => {return response.json()})
@@ -53,18 +54,23 @@ function forecastSearch(lat,lon) {
     .then(response => {return response.json()})
     .then(data => {
         console.log(data)
-        var uvIndexEl = $("<p>").text("UV Index: " + data.current.uvi;);
+        var uvIndex = data.current.uvi;
+        var uvIndexEl = $("<p>").text("UV Index: " + uvIndex);
         if (uvIndex < 3) {
             uvIndexEl.addClass("low-index")
-        } else if (uvIndexEl > 2 && uvIndexEl < 6) {
+        } else if (uvIndex > 2 && uvIndex < 6) {
             uvIndexEl.addClass("moderate-index")
-        } else if (uvIndexEl > 5 && uvIndexEl < 8) {
+        } else if (uvIndex > 5 && uvIndex < 8) {
             uvIndexEl.addClass("high-index")
-        } else if (uvIndexEl > 7 && uvIndexEl < 11) {
+        } else if (uvIndex > 7 && uvIndex < 11) {
             uvIndexEl.addClass("very-high-index")
         } else {uvIndexEl.addClass("extreme-index")}
 
-        $("#current").append(uvIndexEl);
+        $("#current").append(uvIndexEl).attr("style","border: 1px solid black");
+
+        
+        var divHeader = $("<h3>").text("5 Day Forecast:")
+        $("#fivedayHeader").append(divHeader);
 
         for (let i = 1; i < (data.daily.length-2); i++) {
             var temp = $("<p>").addClass("card-text").text("Temp: "+data.daily[i].temp.day+"℉");
@@ -72,8 +78,8 @@ function forecastSearch(lat,lon) {
             var humidity = $("<p>").addClass("card-text").text("Humidity: "+data.daily[i].humidity+"%");
 
             var cardBody = $("<div>").addClass("card-body");
-            var cardDiv = $("<div>").addClass("card").attr("style","width:12rem;");
-            var date = moment().add(i,"days").format("MMMM Do, YYYY");
+            var cardDiv = $("<div>").addClass("card mt5").attr("style","width:11rem;");
+            var date = moment().add(i,"days").format("MMM Do, YYYY");
             var cardDate = $("<h5>").addClass("card-title").text(date);
 
             $(cardBody).append(cardDate,temp,wind,humidity);
