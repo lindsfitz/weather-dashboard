@@ -30,6 +30,7 @@ function weatherSearch(input) {
     fetch(APIurl)
     .then(response => {return response.json()})
     .then(data => {
+        console.log(data)
         var cityname,temp,wind,humidity;
         cityname = $("<h2>").addClass("city-name").text(data.name+"  -  "+today);
         temp = $("<p>").text("Temp: "+data.main.temp+"℉");
@@ -52,6 +53,19 @@ function forecastSearch(lat,lon) {
     .then(response => {return response.json()})
     .then(data => {
         console.log(data)
+        var uvIndexEl = $("<p>").text("UV Index: " + data.current.uvi;);
+        if (uvIndex < 3) {
+            uvIndexEl.addClass("low-index")
+        } else if (uvIndexEl > 2 && uvIndexEl < 6) {
+            uvIndexEl.addClass("moderate-index")
+        } else if (uvIndexEl > 5 && uvIndexEl < 8) {
+            uvIndexEl.addClass("high-index")
+        } else if (uvIndexEl > 7 && uvIndexEl < 11) {
+            uvIndexEl.addClass("very-high-index")
+        } else {uvIndexEl.addClass("extreme-index")}
+
+        $("#current").append(uvIndexEl);
+
         for (let i = 1; i < (data.daily.length-2); i++) {
             var temp = $("<p>").addClass("card-text").text("Temp: "+data.daily[i].temp.day+"℉");
             var wind = $("<p>").addClass("card-text").text("Wind: "+data.daily[i].wind_speed+"MPH");
