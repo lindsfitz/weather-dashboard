@@ -29,7 +29,6 @@ function weatherSearch(input) {
     fetch(APIurl)
     .then(response => {return response.json()})
     .then(data => {
-        console.log(data)
         var cityname,temp,wind,humidity,icon;
         cityname = $("<h2>").addClass("city-name").text(data.name+"  -  "+today);
         var iconLink = "http://openweathermap.org/img/wn/"+data.weather[0].icon+"@2x.png";
@@ -55,7 +54,6 @@ function forecastSearch(lat,lon) {
     fetch(APIurl)
     .then(response => {return response.json()})
     .then(data => {
-        console.log(data)
         var uvIndex = data.current.uvi;
         var uvIndexEl = $("<p>").text("UV Index: " + uvIndex);
         if (uvIndex < 3) {

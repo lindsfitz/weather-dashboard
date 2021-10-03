@@ -21,7 +21,6 @@ header {
 }
 
 .low-index {
-    border: 1px solid green;
     background-color: green;
     color:white;
     border-radius: 5px;
@@ -30,7 +29,6 @@ header {
 }
 
 .moderate-index {
-    border: 1px solid yellow;
     background-color: yellow;
     border-radius: 5px;
     width:fit-content;
@@ -38,7 +36,6 @@ header {
 }
 
 .high-index {
-    border: 1px solid orange;
     width:fit-content;
     background-color: orange;
     color:white;
@@ -47,7 +44,6 @@ header {
 }
 
 .very-high-index {
-    border: 1px solid red;
     color:white;
     background-color: red;
     border-radius: 5px;
@@ -56,7 +52,6 @@ header {
 }
 
 .extreme-index {
-    border: 1px solid purple;
     background-color: purple;
     color:white;
     border-radius: 5px;
