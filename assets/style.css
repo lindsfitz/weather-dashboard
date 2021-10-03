@@ -14,8 +14,9 @@ header {
 }
 
 .card-body {
-    background-color: #435178;
+    background-color: #152238;
     color: white;
+    border-radius: 5px;
     
 }
 
